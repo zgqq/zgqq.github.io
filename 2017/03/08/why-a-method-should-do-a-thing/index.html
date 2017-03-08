@@ -101,7 +101,7 @@ public void enterRoomBlockIfInBlocklist(Long userId){
 public void enterRoomBlockIfInBlocklist(Long userId){
     boolean inBlocklist = false;
     for (Long blockId:blockI">
-<meta property="og:updated_time" content="2017-03-08T01:18:55.826Z">
+<meta property="og:updated_time" content="2017-03-08T01:23:55.026Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="why-a-method-should-do-a-thing">
 <meta name="twitter:description" content="相信很多朋友跟我一样，刚开始学编程的时候，经常听到一句话就是方法代码行数要少，但是却无法理解为什么要少，我明明一个方法可以搞定的事，搞要那么多方法干嘛
@@ -348,7 +348,7 @@ public void enterRoomBlockIfInBlocklist(Long userId){
 <pre><code>public void enterRoomBlockIfInBlocklist(Long userId){
     boolean inBlocklist = false;
     for (Long blockId:blockIds){
-    if (lockId.equals(userId)) {
+    if (blockId.equals(userId)) {
             inBlockList = true;
             break;
         }
@@ -370,7 +370,7 @@ public void enterRoomBlockIfInBlocklist(Long userId){
 
 public void isInBlockList(Long userId) {
     for (Long blockId:blockIds){
-    if (lockId.equals(userId)) {
+    if (blockId.equals(userId)) {
             return true;
         }
     }
