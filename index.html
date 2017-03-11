@@ -247,6 +247,159 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zgqq.github.io/2017/03/11/most-powerful-java-ide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zgqq">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zgqq的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/11/most-powerful-java-ide/" itemprop="url">
+                  打造最强的java ide
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-11T13:21:35+08:00">
+                2017-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/11/most-powerful-java-ide/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/11/most-powerful-java-ide/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Intellij-IDEA"><a href="#Intellij-IDEA" class="headerlink" title="Intellij IDEA"></a>Intellij IDEA</h1><p>Intellij IDEA 是最好的java ide 没有之一</p>
+<h1 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h1><h2 id="ideavim"><a href="#ideavim" class="headerlink" title="ideavim"></a>ideavim</h2><p>ideavim 是一个模拟vim的插件，是Jetbrains产品最强的插件之一， 支持常用的vim的快捷键，近期更新了一个超神级feature，就是支持调用idea内置的action，编辑 ~/.ideavimrc，设置生成getter,setter,constructor等的快捷键</p>
+<pre><code>nnoremap &lt;Space&gt;gc :action GenerateConstructor&lt;CR&gt;
+nnoremap &lt;Space&gt;gg :action GenerateGetter&lt;CR&gt;
+nnoremap &lt;Space&gt;gs :action GenerateSetter&lt;CR&gt;
+nnoremap &lt;Space&gt;ga :action GenerateGetterSetter&lt;CR&gt;
+nnoremap &lt;Space&gt;im :action ImplementMethods&lt;CR&gt;
+nnoremap &lt;Space&gt;dm :action DelegateMethods&lt;CR&gt;
+</code></pre><p>重构，提取方法</p>
+<pre><code>vnoremap &lt;Space&gt;em :&lt;C-u&gt;action ExtractMethod&lt;CR&gt;
+</code></pre><p>格式化代码</p>
+<pre><code>nnoremap &lt;Space&gt;rc :action ReformatCode&lt;CR&gt;
+</code></pre><p>显示文件在项目结构 </p>
+<pre><code>nnoremap &lt;Space&gt;pv :action SelectInProjectView&lt;CR&gt;
+</code></pre><p>新增</p>
+<pre><code>nnoremap &lt;Space&gt;nc :action NewClass&lt;CR&gt;
+nnoremap &lt;Space&gt;np :action NewProject&lt;CR&gt;
+</code></pre><p>关闭tab </p>
+<pre><code>nnoremap &lt;Space&gt;ct :close&lt;CR&gt;
+nnoremap &lt;Space&gt;on :action CloseAllEditorsButActive&lt;CR&gt;
+</code></pre><p>窗口操作</p>
+<pre><code>nnoremap &lt;Space&gt;hw :action HideAllWindows&lt;CR&gt;
+nnoremap &lt;Space&gt;hs :action HideSideWindows&lt;CR&gt;
+nnoremap &lt;Space&gt;lw :action JumpToLastWindow&lt;CR&gt;
+nnoremap &lt;Space&gt;aw :action ActivateProjectToolWindow&lt;CR&gt;
+</code></pre><h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>上面的快捷键虽然超级给力，但是也有无能为力的时候，脱离了编辑环境后，也就没办法使用上面的快捷键，可以分成两类快捷键，第一类就是依赖编辑环境，第二类就是全局快捷键<br>比如重命名某一个变量，就是依赖编辑环境环境的，所以把它设置为vim 的快捷键那是极好的，比如搜索一个类，有时候我们的光标会在项目结构上，就是脱离了编辑环境，还有即使在编辑环境内，因为vim的快捷键只能在command mode执行，所以把搜索类设置成全局快捷键还是极好的</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://zgqq.github.io/2017/03/09/week-summary2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1529,7 +1682,7 @@ if err != nil  {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1542,7 +1695,7 @@ if err != nil  {
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
