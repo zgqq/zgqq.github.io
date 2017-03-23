@@ -340,7 +340,7 @@ conf.put(&quot;kafka.fetch.from.beginning&quot;, true);
 </code></pre><p>要用字符串形式</p>
 <pre><code>Properties conf = new Properties();
 conf.put(&quot;kafka.fetch.from.beginning&quot;, &quot;true&quot;);
-</code></pre><p>我特么也是醉，然后折腾了好久。。。<br>还有一个要注意的是spout和bolt都是用反序列化来生成的，所以构造方法不会被执行，要初始化可以在prepare中</p>
+</code></pre><p>我特么也是醉，然后折腾了好久。。。<br>还有一个要注意的是spout和bolt都是用反序列化来生成的，所以构造方法不会被执行，要初始化可以在prepare中，我理解错了几次bolt和grouping，刚开始以为bolt是线程不安全的，直到我理解了task，还有一个就是，还有fieldsGrouping，因为最近要做一个日志分析系统，我用访问时间作为分组，这样相同的时间就会被分到相同的task，我居然担心内存泄露这种问题，真的醉了，我以为storm 实现fieldsGrouping是用一个map来实现的，如果是这样，以前的时间不可能被统计到，必定会内存泄露，还好后来在github问了个问题，一个哥们还打了电话过来，解决了我的问题，内部是取field的hash然后分流到对应的task，storm是无状态的</p>
 <h1 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h1><ul>
 <li>maven 的provided 只要能用来编译，没有作为运行库，没有认真看文档的人小心了，不然要跟我一样杯具了</li>
 <li>mybatis 的 SelectProvider 一不小心会被sql注入</li>
@@ -350,133 +350,6 @@ conf.put(&quot;kafka.fetch.from.beginning&quot;, &quot;true&quot;);
 </ul>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>storm中，worker是一个进程，一个worker里面可以有多个executor，也就是线程，每一个executor通常会执行一个task，task 是一个bolt 或spout 的实例，所以无论bolt还是spout都是线程安全的</p>
 
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zgqq.github.io/2017/03/11/why-i-costed-2-week-to-tweak-environment-configs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zgqq">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zgqq的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/11/why-i-costed-2-week-to-tweak-environment-configs/" itemprop="url">
-                  why-i-costed-2-week-to-tweak-environment-configs
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-11T15:32:46+08:00">
-                2017-03-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/11/why-i-costed-2-week-to-tweak-environment-configs/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/11/why-i-costed-2-week-to-tweak-environment-configs/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
           
         
       
@@ -1720,13 +1593,195 @@ if err != nil  {
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zgqq.github.io/2017/02/12/my-resume/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zgqq">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zgqq的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/12/my-resume/" itemprop="url">
+                  我的简历
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-12T19:04:20+08:00">
+                2017-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/12/my-resume/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/12/my-resume/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="个人声明"><a href="#个人声明" class="headerlink" title="个人声明"></a>个人声明</h1><p>大佬不用联系我了，已经找到合适的了，谢谢</p>
+<h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><p>手机：18813260085<br>Email：zgqjava@gmail.com<br>微信：z4001234 </p>
+<h1 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a>个人信息</h1><ul>
+<li>詹桂琦/男/1995</li>
+<li>期望职位：java程序员</li>
+<li>期望薪资：2.5k~3.5k</li>
+<li>期望城市：深圳</li>
+<li>英语四级：522</li>
+<li>Github：<a href="http://github.com/zgqq" target="_blank" rel="external">http://github.com/zgqq</a> </li>
+<li>个人标签：linuxer,vimer,jetbrains fans</li>
+</ul>
+<h1 id="开源项目和作品"><a href="#开源项目和作品" class="headerlink" title="开源项目和作品"></a>开源项目和作品</h1><h2 id="Mah"><a href="#Mah" class="headerlink" title="Mah"></a>Mah</h2><p>项目地址：<a href="https://github.com/zgqq/mah" target="_blank" rel="external">https://github.com/zgqq/mah</a><br>Mah(My Awesome Helper) 是一个类似alfred的生产力工具， 使用java8开发，gradle构建项目,git作为版本控制，目前已经收到50个star</p>
+<ul>
+<li>开发环境<br>  Linux,IntelliJ IDEA</li>
+<li>特色<ol>
+<li>支持插件</li>
+<li>异步执行</li>
+<li>支持xml配置</li>
+<li>灵活的快捷键</li>
+</ol>
+</li>
+<li>目前插件<ol>
+<li>查单词</li>
+<li>可以用来查天气</li>
+<li>模糊搜索github star过的仓库，在浏览器自动打开</li>
+<li>记录快捷键使用情况</li>
+<li>自动提示，类似zsh插件autosuggestion</li>
+</ol>
+</li>
+<li>解决问题<ol>
+<li>在Linux没有比较好用的类似软件，平时github逛得比较多，然后看到不错的repo都会点star，不过常常会回去看，通常是在浏览器打开 <a href="https://github.com/zgqq?tab=stars" target="_blank" rel="external">https://github.com/zgqq?tab=stars</a> 然后搜索，点击进入，加上有时候会网络延迟，整个过程十分繁琐，解决办法就是把star过的repo同步到本地，离线模糊搜索，回车后在浏览器打开，这样一来效率大大提高。于是mah就诞生了，当然github只是作为其中一个插件</li>
+<li>使用配置文件，如果没有配置文件，试想一下重装软件后，又要在界面点来点去</li>
+<li>所有快捷键都是可配置的，我配置成命令行和一样的快捷键</li>
+</ol>
+</li>
+</ul>
+<h2 id="Awepost"><a href="#Awepost" class="headerlink" title="Awepost"></a>Awepost</h2><p>项目地址：<a href="https://github.com/zgqq/awepost" target="_blank" rel="external">https://github.com/zgqq/awepost</a></p>
+<ul>
+<li>开发环境<br>  Linux,IntelliJ IDEA 16.3,Docker,Mysql5.7</li>
+<li>该项目旨在构建一个以高质量帖子为主的bbs系统，整个项目基于springboot+mybatis，使用gradle构建项目，git作为版本控制，thymeleaf作为模块引擎，前端boostrap + jQuery</li>
+<li>TODO<ol>
+<li>图片储存在七牛云</li>
+<li>使用cdn加速的前端库，而不是放在服务端</li>
+<li>使用NoSQL </li>
+</ol>
+</li>
+<li>目前正在开发</li>
+</ul>
+<h2 id="其他项目"><a href="#其他项目" class="headerlink" title="其他项目"></a>其他项目</h2><ol>
+<li>学校的OA</li>
+<li>贴吧自动签到</li>
+<li>命令行查单词(golang)</li>
+</ol>
+<h1 id="个人评价"><a href="#个人评价" class="headerlink" title="个人评价"></a>个人评价</h1><p>喜欢学习新技术，擅长独立解决问题，常上网站github，stackoverflow<br>熟悉java,gradle,maven,linux,git,mysql，了解golang,springboot,docker</p>
+<h1 id="相关证书"><a href="#相关证书" class="headerlink" title="相关证书"></a>相关证书</h1><ul>
+<li>英语四级</li>
+<li>职业技能打字比赛一等奖</li>
+</ul>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p>感谢您花时间阅读我的简历，期待能有机会和您共事。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
 
           
           </div>
@@ -1769,7 +1824,7 @@ if err != nil  {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

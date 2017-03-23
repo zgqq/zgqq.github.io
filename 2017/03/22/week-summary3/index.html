@@ -93,7 +93,7 @@
 <meta property="og:url" content="http://zgqq.github.io/2017/03/22/week-summary3/index.html">
 <meta property="og:site_name" content="zgqq的博客">
 <meta property="og:description" content="Jstorm上周被老大交待了一个任务，就是做一个日志分析系统，刚开始他叫我做一个kafka的消费者然后统计一下就行，后来不知道怎么说的，就谈到storm不错，以前只是听过storm是一个实时计算框架，好像很难的样子，没有应用场景，所以我一直没学，容纳后我就出观望看了一下，我的天，这是什么鬼，什么topology,spout,bolt都完全懵逼的，好不容易搞得有点懂了，跟老大说了一下，因为他是阿里粉">
-<meta property="og:updated_time" content="2017-03-22T13:47:22.064Z">
+<meta property="og:updated_time" content="2017-03-23T13:21:04.607Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="week-summary3">
 <meta name="twitter:description" content="Jstorm上周被老大交待了一个任务，就是做一个日志分析系统，刚开始他叫我做一个kafka的消费者然后统计一下就行，后来不知道怎么说的，就谈到storm不错，以前只是听过storm是一个实时计算框架，好像很难的样子，没有应用场景，所以我一直没学，容纳后我就出观望看了一下，我的天，这是什么鬼，什么topology,spout,bolt都完全懵逼的，好不容易搞得有点懂了，跟老大说了一下，因为他是阿里粉">
@@ -337,7 +337,7 @@ conf.put(&quot;kafka.fetch.from.beginning&quot;, true);
 </code></pre><p>要用字符串形式</p>
 <pre><code>Properties conf = new Properties();
 conf.put(&quot;kafka.fetch.from.beginning&quot;, &quot;true&quot;);
-</code></pre><p>我特么也是醉，然后折腾了好久。。。<br>还有一个要注意的是spout和bolt都是用反序列化来生成的，所以构造方法不会被执行，要初始化可以在prepare中</p>
+</code></pre><p>我特么也是醉，然后折腾了好久。。。<br>还有一个要注意的是spout和bolt都是用反序列化来生成的，所以构造方法不会被执行，要初始化可以在prepare中，我理解错了几次bolt和grouping，刚开始以为bolt是线程不安全的，直到我理解了task，还有一个就是，还有fieldsGrouping，因为最近要做一个日志分析系统，我用访问时间作为分组，这样相同的时间就会被分到相同的task，我居然担心内存泄露这种问题，真的醉了，我以为storm 实现fieldsGrouping是用一个map来实现的，如果是这样，以前的时间不可能被统计到，必定会内存泄露，还好后来在github问了个问题，一个哥们还打了电话过来，解决了我的问题，内部是取field的hash然后分流到对应的task，storm是无状态的</p>
 <h1 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h1><ul>
 <li>maven 的provided 只要能用来编译，没有作为运行库，没有认真看文档的人小心了，不然要跟我一样杯具了</li>
 <li>mybatis 的 SelectProvider 一不小心会被sql注入</li>
@@ -376,8 +376,8 @@ conf.put(&quot;kafka.fetch.from.beginning&quot;, &quot;true&quot;);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/11/why-i-costed-2-week-to-tweak-environment-configs/" rel="next" title="why-i-costed-2-week-to-tweak-environment-configs">
-                <i class="fa fa-chevron-left"></i> why-i-costed-2-week-to-tweak-environment-configs
+              <a href="/2017/03/11/most-powerful-java-ide/" rel="next" title="打造最强的java ide">
+                <i class="fa fa-chevron-left"></i> 打造最强的java ide
               </a>
             
           </div>
@@ -460,7 +460,7 @@ conf.put(&quot;kafka.fetch.from.beginning&quot;, &quot;true&quot;);
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
