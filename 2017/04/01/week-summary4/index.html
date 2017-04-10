@@ -89,20 +89,20 @@
 
 <meta name="description" content="任务这周有3个任务，准确的说是2个，另外1个是历史遗留的
 才艺分类这个跟业务密切相关，现在业务都不熟，什么东西都得问
-日志那个日志分析，确实有点蛋疼，数据量还是相当大的，每秒就有3000多条日志，之前有说过那个统计后插入数据库是无顺序的，其实是不存在的，从一开始我就理解错了jstorm，以为jstorm要开多task才能发挥威力，如果开多个task，意味着多线程，有可能21:00:01的日志比21">
+日志之前有说过那个统计后插入数据库是无顺序的，其实是不存在的，从一开始我就理解错了jstorm，以为jstorm要开多task才能发挥威力，如果开多个task，意味着多线程，有可能21:00:01的日志比21:00:00还先到，这种情况是相当难处理的，没有很好的办法处理这个问题，这">
 <meta property="og:type" content="article">
 <meta property="og:title" content="week-summary4">
 <meta property="og:url" content="http://zgqq.github.io/2017/04/01/week-summary4/index.html">
 <meta property="og:site_name" content="zgqq的博客">
 <meta property="og:description" content="任务这周有3个任务，准确的说是2个，另外1个是历史遗留的
 才艺分类这个跟业务密切相关，现在业务都不熟，什么东西都得问
-日志那个日志分析，确实有点蛋疼，数据量还是相当大的，每秒就有3000多条日志，之前有说过那个统计后插入数据库是无顺序的，其实是不存在的，从一开始我就理解错了jstorm，以为jstorm要开多task才能发挥威力，如果开多个task，意味着多线程，有可能21:00:01的日志比21">
-<meta property="og:updated_time" content="2017-04-03T05:22:03.180Z">
+日志之前有说过那个统计后插入数据库是无顺序的，其实是不存在的，从一开始我就理解错了jstorm，以为jstorm要开多task才能发挥威力，如果开多个task，意味着多线程，有可能21:00:01的日志比21:00:00还先到，这种情况是相当难处理的，没有很好的办法处理这个问题，这">
+<meta property="og:updated_time" content="2017-04-08T14:05:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="week-summary4">
 <meta name="twitter:description" content="任务这周有3个任务，准确的说是2个，另外1个是历史遗留的
 才艺分类这个跟业务密切相关，现在业务都不熟，什么东西都得问
-日志那个日志分析，确实有点蛋疼，数据量还是相当大的，每秒就有3000多条日志，之前有说过那个统计后插入数据库是无顺序的，其实是不存在的，从一开始我就理解错了jstorm，以为jstorm要开多task才能发挥威力，如果开多个task，意味着多线程，有可能21:00:01的日志比21">
+日志之前有说过那个统计后插入数据库是无顺序的，其实是不存在的，从一开始我就理解错了jstorm，以为jstorm要开多task才能发挥威力，如果开多个task，意味着多线程，有可能21:00:01的日志比21:00:00还先到，这种情况是相当难处理的，没有很好的办法处理这个问题，这">
 
 
 
@@ -349,7 +349,7 @@
       
         <h1 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h1><p>这周有3个任务，准确的说是2个，另外1个是历史遗留的</p>
 <h2 id="才艺分类"><a href="#才艺分类" class="headerlink" title="才艺分类"></a>才艺分类</h2><p>这个跟业务密切相关，现在业务都不熟，什么东西都得问</p>
-<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>那个日志分析，确实有点蛋疼，数据量还是相当大的，每秒就有3000多条日志，之前有说过那个统计后插入数据库是无顺序的，其实是不存在的，从一开始我就理解错了jstorm，以为jstorm要开多task才能发挥威力，如果开多个task，意味着多线程，有可能21:00:01的日志比21:00:00还先到，这种情况是相当难处理的，没有很好的办法处理这个问题，这个问题困扰了我相当久，但是如果不开多个task呢，一切都变得简单了，日志都是有顺序的，只要21:00:01来后，把21:00:00的统计提交上去就行了，全部的bolt只有一个task会不会出现扩展问题呢，最开始我就是担心这个问题，一直考虑多个task，可惜我脱离了实际谈需求，解析日志的bolt作为上游，之前在这个bolt开了多个task，根据我的测试解析10000条的log大概是100毫秒，现在的数据量撑死1000条/秒，根本不用开多个task</p>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>之前有说过那个统计后插入数据库是无顺序的，其实是不存在的，从一开始我就理解错了jstorm，以为jstorm要开多task才能发挥威力，如果开多个task，意味着多线程，有可能21:00:01的日志比21:00:00还先到，这种情况是相当难处理的，没有很好的办法处理这个问题，这个问题困扰了我相当久，但是如果不开多个task呢，一切都变得简单了，日志都是有顺序的，只要21:00:01来后，把21:00:00的统计提交上去就行了，全部的bolt只有一个task会不会出现扩展问题呢，最开始我就是担心这个问题，一直考虑多个task，可惜我脱离了实际谈需求，解析日志的bolt作为上游，之前在这个bolt开了多个task，根据我的测试解析10000条的log大概是100毫秒，现在的数据量撑死1000条/秒，根本不用开多个task</p>
 <h2 id="转发聊天"><a href="#转发聊天" class="headerlink" title="转发聊天"></a>转发聊天</h2><p>先过滤敏感词，再通过http请求，转发给云信，这个相对好做的一点</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>似乎任务越来越难的样子，日志处理那个是技术上难，其他是业务上难，什么文档，代码都没给我，就叫我去写，我特么也是醉了</p>
 
@@ -470,7 +470,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
